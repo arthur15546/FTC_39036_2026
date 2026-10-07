@@ -1,7 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-import androidx.annotation.NonNull;
-
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -11,9 +9,17 @@ public class TeleOpMode extends OpMode {
     VelocityLimiter limiter = new VelocityLimiter();
     double lY=0,lX=0,rX=0;
 
+    Motor motorFL = new Motor();
+    Motor motorFR = new Motor();
+    Motor motorBL = new Motor();
+    Motor motorBR = new Motor();
+
     @Override
     public  void init(){
-
+        motorFL.init(hardwareMap, "motorFL");
+        motorFR.init(hardwareMap, "motorFR");
+        motorBL.init(hardwareMap, "motorBL");
+        motorBR.init(hardwareMap, "motorBR");
     }
     @Override
     public void loop(){
@@ -21,19 +27,17 @@ public class TeleOpMode extends OpMode {
         lX=gamepad1.left_stick_x;
         rX=gamepad1.right_stick_x;
 
-        double[] vel = mecanum.cauculate(lY, lX, rX);
+        double[] vel = mecanum.calculate(lY, lX, rX);
 
-        vel = limiter.cauculate(
+        vel = limiter.calculate(
                 vel,
                 gamepad1.rightBumperWasPressed(),
                 gamepad1.leftBumperWasPressed()
         );
 
-
-
-
-
-
-
+        motorFL.setMotorSpeed(vel[0]);
+        motorFR.setMotorSpeed(vel[1]);
+        motorBL.setMotorSpeed(vel[2]);
+        motorBR.setMotorSpeed(vel[3]);
     }
 }
