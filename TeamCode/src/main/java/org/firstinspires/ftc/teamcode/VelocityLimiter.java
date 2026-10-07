@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 public class VelocityLimiter {
     double marcha=0;
-    public double[] cauculate(double[] velocity, boolean rightBumper, boolean leftBumper){
+    public double[] calculate(double[] velocity, boolean rightBumper, boolean leftBumper){
         if(rightBumper){
             if(marcha < 1.0) {
                 marcha += 0.25;

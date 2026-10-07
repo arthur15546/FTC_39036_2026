@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 public class MecanumDrive {
-    double[] cauculate(double lY, double lX, double rX){
+    double[] calculate(double lY, double lX, double rX){
         double vFL = lY + lX + rX;
         double vFR = lY - lX - rX;
         double vBL = lY - lX + rX;
