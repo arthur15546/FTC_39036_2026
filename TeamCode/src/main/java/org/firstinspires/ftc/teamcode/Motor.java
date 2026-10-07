@@ -11,7 +11,12 @@ public class Motor {
         motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
-    public void setMotorSpeed(double speed) {
-        motor.setPower(speed);
+    public void setMotorSpeed(double speed, boolean reversed) {
+        if(reversed){
+            motor.setPower(-speed);
+        }
+        else {
+            motor.setPower(speed);
+        }
     }
 }

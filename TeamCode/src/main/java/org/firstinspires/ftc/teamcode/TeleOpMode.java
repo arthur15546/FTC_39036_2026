@@ -35,9 +35,9 @@ public class TeleOpMode extends OpMode {
                 gamepad1.leftBumperWasPressed()
         );
 
-        motorFL.setMotorSpeed(vel[0]);
-        motorFR.setMotorSpeed(vel[1]);
-        motorBL.setMotorSpeed(vel[2]);
-        motorBR.setMotorSpeed(vel[3]);
+        motorFL.setMotorSpeed(vel[0], false);
+        motorFR.setMotorSpeed(vel[1], true);
+        motorBL.setMotorSpeed(vel[2], true);
+        motorBR.setMotorSpeed(vel[3], false);
     }
 }
