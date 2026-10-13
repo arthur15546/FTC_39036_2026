@@ -112,6 +112,7 @@ public class TeleOpRevision extends OpMode {
             motorFL.setMotorSpeed(velFinal[0], reverseFL);
             motorFR.setMotorSpeed(velFinal[1], reverseFR);
             motorBL.setMotorSpeed(velFinal[2], reverseBL);
+
             motorBR.setMotorSpeed(velFinal[3], reverseBR);
         }
 
