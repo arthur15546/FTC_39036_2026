@@ -102,10 +102,18 @@ public class TeleOpRevision extends OpMode {
         // 5. ENVIA PARA OS MOTORES
         // =====================================================
 
-        motorFL.setMotorSpeed(velFinal[0], reverseFL);
-        motorFR.setMotorSpeed(velFinal[1], reverseFR);
-        motorBL.setMotorSpeed(velFinal[2], reverseBL);
-        motorBR.setMotorSpeed(velFinal[3], reverseBR);
+        if(gamepad1.b){
+            motorFL.setMotorSpeed(0, reverseFL);
+            motorFR.setMotorSpeed(0, reverseFR);
+            motorBL.setMotorSpeed(0, reverseBL);
+            motorBR.setMotorSpeed(0, reverseBR);
+        }
+        else {
+            motorFL.setMotorSpeed(velFinal[0], reverseFL);
+            motorFR.setMotorSpeed(velFinal[1], reverseFR);
+            motorBL.setMotorSpeed(velFinal[2], reverseBL);
+            motorBR.setMotorSpeed(velFinal[3], reverseBR);
+        }
 
 
         // =====================================================

@@ -14,6 +14,11 @@ public class TeleOpMode extends OpMode {
     Motor motorBL = new Motor();
     Motor motorBR = new Motor();
 
+    boolean reverseFL = false;
+    boolean reverseFR = true;
+    boolean reverseBL = false;
+    boolean reverseBR = true;
+
     @Override
     public  void init(){
         motorFL.init(hardwareMap, "motorFL");
@@ -34,10 +39,17 @@ public class TeleOpMode extends OpMode {
                 gamepad1.rightBumperWasPressed(),
                 gamepad1.leftBumperWasPressed()
         );
-
-        motorFL.setMotorSpeed(vel[0], false);
-        motorFR.setMotorSpeed(vel[1], true);
-        motorBL.setMotorSpeed(vel[2], true);
-        motorBR.setMotorSpeed(vel[3], false);
+        if(gamepad1.b){
+            motorFL.setMotorSpeed(0, reverseFL);
+            motorFR.setMotorSpeed(0, reverseFR);
+            motorBL.setMotorSpeed(0, reverseBL);
+            motorBR.setMotorSpeed(0, reverseBR);
+        }
+        else {
+            motorFL.setMotorSpeed(vel[0], reverseFL);
+            motorFR.setMotorSpeed(vel[1], reverseFR);
+            motorBL.setMotorSpeed(vel[2], reverseBL);
+            motorBR.setMotorSpeed(vel[3], reverseBR);
+        }
     }
 }
