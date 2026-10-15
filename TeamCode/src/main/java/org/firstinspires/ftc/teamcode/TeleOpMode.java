@@ -16,8 +16,6 @@ public class TeleOpMode extends OpMode {
 
     Motor colector = new Motor();
     int colectorGiro = 0;
-    boolean colectorFront = false;
-
     boolean reverseFL = false;
     boolean reverseFR = true;
     boolean reverseBL = false;
@@ -58,17 +56,11 @@ public class TeleOpMode extends OpMode {
             motorBR.setMotorSpeed(vel[3], reverseBR);
         }
 
-        if(gamepad1.dpad_up){
-            colectorGiro = 1;
-            colectorFront = true;
-        }
-        else if(gamepad1.dpad_down){
-            colectorGiro = -1;
-            colectorFront = false;
-        }
+        if(gamepad1.dpad_up) colectorGiro = 1;
+        else if(gamepad1.dpad_down) colectorGiro = -1;
         else if(gamepad1.dpad_right) colectorGiro = 0;
 
-        colector.setMotorSpeed(colectorGiro, colectorFront);
+        colector.setMotorSpeed(colectorGiro, true);
 
     }
 }
