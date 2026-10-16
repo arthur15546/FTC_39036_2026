@@ -1,7 +1,11 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.testes;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
+import org.firstinspires.ftc.teamcode.MecanumDrive;
+import org.firstinspires.ftc.teamcode.Motor;
+import org.firstinspires.ftc.teamcode.VelocityLimiter;
 
 @TeleOp
 public class TeleOpRevision extends OpMode {
