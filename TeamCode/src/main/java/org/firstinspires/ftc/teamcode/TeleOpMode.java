@@ -28,7 +28,7 @@ public class TeleOpMode extends OpMode {
         motorFR.init(hardwareMap, "motorFR");
         motorBL.init(hardwareMap, "motorBL");
         motorBR.init(hardwareMap, "motorBR");
-        colector.init(hardwareMap, "colector");
+        colector.init(hardwareMap, "coletor");
     }
     @Override
     public void loop(){
