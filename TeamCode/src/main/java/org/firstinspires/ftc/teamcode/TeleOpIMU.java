@@ -16,7 +16,8 @@ public class TeleOpIMU extends OpMode {
     Motor motorFR = new Motor();
     Motor motorBL = new Motor();
     Motor motorBR = new Motor();
-
+    Motor colector = new Motor();
+    int colectorGiro = 0;
     boolean reverseFL = false;
     boolean reverseFR = true;
     boolean reverseBL = false;
@@ -30,6 +31,7 @@ public class TeleOpIMU extends OpMode {
         motorFR.init(hardwareMap, "motorFR");
         motorBL.init(hardwareMap, "motorBL");
         motorBR.init(hardwareMap, "motorBR");
+        colector.init(hardwareMap, "coletor");
 
         imu = hardwareMap.get(IMU.class, "imu");
 
@@ -68,10 +70,24 @@ public class TeleOpIMU extends OpMode {
         );
 
 
-        motorFL.setMotorSpeed(vel[0], reverseFL);
-        motorFR.setMotorSpeed(vel[1], reverseFR);
-        motorBL.setMotorSpeed(vel[2], reverseBL);
-        motorBR.setMotorSpeed(vel[3], reverseBR);
+        if(gamepad1.b){
+            motorFL.setMotorSpeed(0, reverseFL);
+            motorFR.setMotorSpeed(0, reverseFR);
+            motorBL.setMotorSpeed(0, reverseBL);
+            motorBR.setMotorSpeed(0, reverseBR);
+        }
+        else {
+            motorFL.setMotorSpeed(vel[0], reverseFL);
+            motorFR.setMotorSpeed(vel[1], reverseFR);
+            motorBL.setMotorSpeed(vel[2], reverseBL);
+            motorBR.setMotorSpeed(vel[3], reverseBR);
+        }
+
+        if(gamepad1.dpad_up) colectorGiro = 1;
+        else if(gamepad1.dpad_down) colectorGiro = -1;
+        else if(gamepad1.dpad_right) colectorGiro = 0;
+
+        colector.setMotorSpeed(colectorGiro, true);
 
         telemetry.addData("Heading", heading);
         telemetry.addData("lX original", lX);
