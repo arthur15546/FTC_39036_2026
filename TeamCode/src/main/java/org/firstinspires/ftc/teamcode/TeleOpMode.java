@@ -1,7 +1,11 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 
 @TeleOp
 public class TeleOpMode extends OpMode {
@@ -23,12 +27,19 @@ public class TeleOpMode extends OpMode {
 
 
     @Override
+
     public  void init(){
         motorFL.init(hardwareMap, "motorFL");
         motorFR.init(hardwareMap, "motorFR");
         motorBL.init(hardwareMap, "motorBL");
         motorBR.init(hardwareMap, "motorBR");
         colector.init(hardwareMap, "coletor");
+
+        //http://192.168.43.1:8080/dash?utm_source=chatgpt.com
+        telemetry = new MultipleTelemetry(
+                telemetry,
+                FtcDashboard.getInstance().getTelemetry()
+        );
     }
     @Override
     public void loop(){
@@ -62,5 +73,15 @@ public class TeleOpMode extends OpMode {
 
         colector.setMotorSpeed(colectorGiro, true);
 
+        telemetry.addData("lY", "%.3f", lY);
+        telemetry.addData("lX", "%.3f", lX);
+        telemetry.addData("rX", "%.3f", rX);
+
+        telemetry.addData("FL", "%.3f", vel[0]);
+        telemetry.addData("FR", "%.3f", vel[1]);
+        telemetry.addData("BL", "%.3f", vel[2]);
+        telemetry.addData("BR", "%.3f", vel[3]);
+
+        telemetry.update();
     }
 }
