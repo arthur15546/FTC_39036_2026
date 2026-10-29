@@ -8,6 +8,7 @@ public class Motor {
 
     public void init(HardwareMap hardwareMap, String motorName) {
         motor = hardwareMap.get(DcMotor.class, motorName);
+        motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
