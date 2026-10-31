@@ -18,8 +18,11 @@ public class TeleOpMode extends OpMode {
     Motor motorBL = new Motor();
     Motor motorBR = new Motor();
 
+    Motor climb = new Motor();
+    double climbGiro = 0;
+
     Motor colector = new Motor();
-    int colectorGiro = 0;
+    double colectorGiro = 0;
     boolean reverseFL = false;
     boolean reverseFR = true;
     boolean reverseBL = false;
@@ -34,8 +37,10 @@ public class TeleOpMode extends OpMode {
         motorBL.init(hardwareMap, "motorBL");
         motorBR.init(hardwareMap, "motorBR");
         colector.init(hardwareMap, "coletor");
+        climb.init(hardwareMap,"climb");
 
-        //http://192.168.43.1:8080/dash?utm_source=chatgpt.com
+
+        //http://192.168.43.1:8080/dash
         telemetry = new MultipleTelemetry(
                 telemetry,
                 FtcDashboard.getInstance().getTelemetry()
@@ -54,24 +59,37 @@ public class TeleOpMode extends OpMode {
                 gamepad1.rightBumperWasPressed(),
                 gamepad1.leftBumperWasPressed()
         );
-        if(gamepad1.b){
-            motorFL.setMotorSpeed(0, reverseFL);
-            motorFR.setMotorSpeed(0, reverseFR);
-            motorBL.setMotorSpeed(0, reverseBL);
-            motorBR.setMotorSpeed(0, reverseBR);
+        if(gamepad1.b) {
+            vel[0] = 0;
+            vel[1] = 0;
+            vel[2] = 0;
+            vel[3] = 0;
         }
-        else {
-            motorFL.setMotorSpeed(vel[0], reverseFL);
-            motorFR.setMotorSpeed(vel[1], reverseFR);
-            motorBL.setMotorSpeed(vel[2], reverseBL);
-            motorBR.setMotorSpeed(vel[3], reverseBR);
-        }
+        motorFL.setMotorSpeed(vel[0], reverseFL);
+        motorFR.setMotorSpeed(vel[1], reverseFR);
+        motorBL.setMotorSpeed(vel[2], reverseBL);
+        motorBR.setMotorSpeed(vel[3], reverseBR);
 
-        if(gamepad1.dpad_up) colectorGiro = 1;
-        else if(gamepad1.dpad_down) colectorGiro = -1;
-        else if(gamepad1.dpad_right) colectorGiro = 0;
+        if(gamepad1.dpad_up) {
+            colectorGiro = 1;
+            climbGiro = 0.5;
+        }
+        else if(gamepad1.dpad_down){
+            colectorGiro = -1;
+            climbGiro = -0.5;
+        }
+        else if(gamepad1.dpad_right){
+            colectorGiro = 0;
+            climbGiro = 0;
+        }
+        else if(gamepad1.dpad_left){
+            colectorGiro = -1;
+        }
 
         colector.setMotorSpeed(colectorGiro, true);
+        climb.setMotorSpeed(climbGiro, true);
+
+
 
         telemetry.addData("lY", "%.3f", lY);
         telemetry.addData("lX", "%.3f", lX);
