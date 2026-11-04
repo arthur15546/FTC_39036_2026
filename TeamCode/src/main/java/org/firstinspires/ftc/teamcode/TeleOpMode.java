@@ -87,7 +87,7 @@ public class TeleOpMode extends OpMode {
         }
 
         colector.setMotorSpeed(colectorGiro, true);
-        climb.setMotorSpeed(climbGiro, true);
+        climb.setMotorSpeed(climbGiro, false);
 
 
 
