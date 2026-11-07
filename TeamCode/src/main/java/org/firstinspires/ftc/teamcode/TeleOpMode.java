@@ -23,6 +23,9 @@ public class TeleOpMode extends OpMode {
 
     Motor colector = new Motor();
     double colectorGiro = 0;
+
+    Motor tiro = new Motor();
+    double tiroGiro = 0;
     boolean reverseFL = false;
     boolean reverseFR = true;
     boolean reverseBL = false;
@@ -89,6 +92,24 @@ public class TeleOpMode extends OpMode {
         colector.setMotorSpeed(colectorGiro, true);
         climb.setMotorSpeed(climbGiro, true);
 
+        if(gamepad1.y){
+            tiroGiro = 0;
+        }
+        else if(gamepad1.a){
+            tiroGiro = 1;
+        }
+        tiro.setMotorSpeed(tiroGiro, false);
+
+
+        if(gamepad2.x){
+            colectorGiro = gamepad2.left_stick_y;
+        }
+        if(gamepad2.y){
+            climbGiro = gamepad2.left_stick_y;
+        }
+        if(gamepad2.b){
+            tiroGiro = gamepad2.left_stick_y;
+        }
 
 
         telemetry.addData("lY", "%.3f", lY);
@@ -99,6 +120,10 @@ public class TeleOpMode extends OpMode {
         telemetry.addData("FR", "%.3f", vel[1]);
         telemetry.addData("BL", "%.3f", vel[2]);
         telemetry.addData("BR", "%.3f", vel[3]);
+
+        telemetry.addData("tiro", tiroGiro);
+        telemetry.addData("colector", colectorGiro);
+        telemetry.addData("climb", climbGiro);
 
         telemetry.update();
     }
