@@ -1,6 +1,8 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.drive;
+
 public class VelocityLimiter {
-    double marcha=0.25;
+    double marcha = 0.25;
+
     public double[] calculate(double[] velocity, boolean rightBumper, boolean leftBumper){
         if(rightBumper){
             if(marcha < 1.0) {
@@ -12,7 +14,7 @@ public class VelocityLimiter {
             }
         }
 
-        for(int i=0;i<4;i++){
+        for(int i=0; i<4; i++){
             velocity[i] *= marcha;
         }
 

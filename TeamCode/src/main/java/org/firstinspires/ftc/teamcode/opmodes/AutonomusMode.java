@@ -1,8 +1,10 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
+import org.firstinspires.ftc.teamcode.hardware.Motor;
 
 @Autonomous
 public class AutonomusMode extends OpMode {
@@ -12,6 +14,7 @@ public class AutonomusMode extends OpMode {
     Motor motorBR = new Motor();
 
     ElapsedTime timer = new ElapsedTime();
+
     @Override
     public void init(){
         motorFL.init(hardwareMap, "motorFL");
@@ -19,14 +22,16 @@ public class AutonomusMode extends OpMode {
         motorBL.init(hardwareMap, "motorBL");
         motorBR.init(hardwareMap, "motorBR");
     }
+
     @Override
     public void start(){
         timer.reset();
     }
+
     @Override
     public void loop(){
 
-        if (timer.seconds() < 1) {
+        if (timer.seconds() < 0.5) {
             motorFL.setMotorSpeed(1, false);
             motorFR.setMotorSpeed(1, true);
             motorBL.setMotorSpeed(1, false);

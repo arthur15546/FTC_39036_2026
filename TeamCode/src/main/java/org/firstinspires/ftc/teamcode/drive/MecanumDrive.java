@@ -1,7 +1,7 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.drive;
 
 public class MecanumDrive {
-    double[] calculate(double lY, double lX, double rX){
+    public double[] calculate(double lY, double lX, double rX){
         double vFL = lY + lX + rX;
         double vFR = lY - lX - rX;
         double vBL = lY - lX + rX;
@@ -23,6 +23,6 @@ public class MecanumDrive {
             vBL /= max;
             vBR /= max;
         }
-        return new double[]{vFL,vFR, vBL, vBR};
+        return new double[]{vFL, vFR, vBL, vBR};
     }
 }

@@ -1,11 +1,13 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.IMU;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-
+import org.firstinspires.ftc.teamcode.drive.MecanumDrive;
+import org.firstinspires.ftc.teamcode.drive.VelocityLimiter;
+import org.firstinspires.ftc.teamcode.hardware.Motor;
 
 @TeleOp
 public class TeleOpIMU extends OpMode {
@@ -27,7 +29,7 @@ public class TeleOpIMU extends OpMode {
     IMU imu;
 
     @Override
-    public  void init(){
+    public void init(){
         motorFL.init(hardwareMap, "motorFL");
         motorFR.init(hardwareMap, "motorFR");
         motorBL.init(hardwareMap, "motorBL");
@@ -46,10 +48,12 @@ public class TeleOpIMU extends OpMode {
                 )
         ));
     }
+
     @Override
     public void start() {
         imu.resetYaw();
     }
+
     @Override
     public void loop(){
         lY=-gamepad1.left_stick_y;

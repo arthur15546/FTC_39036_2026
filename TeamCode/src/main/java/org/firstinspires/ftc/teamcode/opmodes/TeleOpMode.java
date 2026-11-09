@@ -1,11 +1,13 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.opmodes;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.acmerobotics.dashboard.FtcDashboard;
-import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
+
+import org.firstinspires.ftc.teamcode.drive.MecanumDrive;
+import org.firstinspires.ftc.teamcode.drive.VelocityLimiter;
+import org.firstinspires.ftc.teamcode.hardware.Motor;
 
 @TeleOp
 public class TeleOpMode extends OpMode {
@@ -33,8 +35,7 @@ public class TeleOpMode extends OpMode {
 
 
     @Override
-
-    public  void init(){
+    public void init(){
         motorFL.init(hardwareMap, "motorFL");
         motorFR.init(hardwareMap, "motorFR");
         motorBL.init(hardwareMap, "motorBL");
@@ -50,6 +51,7 @@ public class TeleOpMode extends OpMode {
                 FtcDashboard.getInstance().getTelemetry()
         );
     }
+
     @Override
     public void loop(){
         lY=-gamepad1.left_stick_y;
