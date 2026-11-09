@@ -41,6 +41,7 @@ public class TeleOpMode extends OpMode {
         motorBR.init(hardwareMap, "motorBR");
         colector.init(hardwareMap, "coletor");
         climb.init(hardwareMap,"climb");
+        tiro.init(hardwareMap, "tiro");
 
 
         //http://192.168.43.1:8080/dash
@@ -74,19 +75,20 @@ public class TeleOpMode extends OpMode {
         motorBR.setMotorSpeed(vel[3], reverseBR);
 
         if(gamepad1.dpad_up) {
-            colectorGiro = 1;
-            climbGiro = 0.5;
+            colectorGiro = 0.7;
+            climbGiro = 1;
         }
         else if(gamepad1.dpad_down){
-            colectorGiro = -1;
-            climbGiro = -0.5;
+            colectorGiro = -0.7;
+            climbGiro = -1;
         }
         else if(gamepad1.dpad_right){
             colectorGiro = 0;
             climbGiro = 0;
         }
         else if(gamepad1.dpad_left){
-            colectorGiro = -1;
+            colectorGiro = -0.7;
+            climbGiro = 0;
         }
 
         colector.setMotorSpeed(colectorGiro, true);
@@ -102,7 +104,7 @@ public class TeleOpMode extends OpMode {
 
 
         if(gamepad2.x){
-            colectorGiro = gamepad2.left_stick_y;
+            colectorGiro = -gamepad2.left_stick_y;
         }
         if(gamepad2.y){
             climbGiro = gamepad2.left_stick_y;
